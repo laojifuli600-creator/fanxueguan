@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "gh-pages -d dist"  // ← 加这一行
     "lint": "eslint .",
     "preview": "vite preview"
   },
