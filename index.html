@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>泛血管疾病风险评估 - 上海市第六人民医院老年医学科</title>
+    <meta name="description" content="上海市第六人民医院老年医学科出品，帮助您评估泛血管疾病风险并提供个性化预防建议。" />
+    <script type="module" crossorigin src="./assets/index-BVN-uVKZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CHql9wLp.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <style>
+      /* 强制隐藏平台 branding 元素 */
+      a[href*="kimi.com/agent"],
+      a[href*="kimi.com/agent"] + a,
+      a[href*="kimi.com/agent"] ~ a,
+      div:has(> a[href*="kimi.com/agent"]),
+      body > a:last-child { display: none !important; }
+    </style>
+    <script>
+      // 移除部署平台自动注入的 branding 元素
+      (function() {
+        var HIDE_KEYWORDS = ['kimi.com/agent', 'Kimi Agent'];
+        function shouldHide(el) {
+          if (!el || el.nodeType !== 1) return false;
+          if (el.tagName === 'A') {
+            if (el.href && el.href.indexOf('kimi.com/agent') !== -1) return true;
+            if (el.textContent && el.textContent.trim() === 'Kimi Agent') return true;
+          }
+          if (el.parentElement && el.parentElement.children.length <= 3) {
+            var siblings = el.parentElement.querySelectorAll('a');
+            for (var i = 0; i < siblings.length; i++) {
+              if (siblings[i].href && siblings[i].href.indexOf('kimi.com/agent') !== -1) return true;
+            }
+          }
+          return false;
+        }
+        function removeBranding() {
+          // 方法1: 直接查询所有 a 标签
+          var links = document.querySelectorAll('a');
+          links.forEach(function(link) {
+            if (shouldHide(link)) {
+              link.style.cssText = 'display:none !important;visibility:hidden !important;opacity:0 !important;height:0 !important;width:0 !important;overflow:hidden !important;';
+              link.removeAttribute('href');
+              var parent = link.parentElement;
+              if (parent && parent.children.length <= 2) {
+                parent.style.cssText = 'display:none !important;';
+              }
+            }
+          });
+          // 方法2: 检查 body 末尾的直接子元素
+          var bodyChildren = document.body.children;
+          var lastFew = Math.min(bodyChildren.length, 5);
+          for (var j = bodyChildren.length - lastFew; j < bodyChildren.length; j++) {
+            var child = bodyChildren[j];
+            if (child.tagName === 'A' || child.tagName === 'DIV' || child.tagName === 'SCRIPT') {
+              var innerLinks = child.querySelectorAll ? child.querySelectorAll('a') : [];
+              for (var k = 0; k < innerLinks.length; k++) {
+                if (innerLinks[k].href && innerLinks[k].href.indexOf('kimi.com/agent') !== -1) {
+                  child.style.cssText = 'display:none !important;';
+                  break;
+                }
+              }
+            }
+          }
+        }
+        // MutationObserver 监听 DOM 变化实时移除
+        if (window.MutationObserver) {
+          var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              mutation.addedNodes.forEach(function(node) {
+                if (shouldHide(node)) {
+                  node.style.cssText = 'display:none !important;';
+                }
+                if (node.querySelectorAll) {
+                  var found = node.querySelectorAll('a');
+                  found.forEach(function(link) {
+                    if (shouldHide(link)) link.style.cssText = 'display:none !important;';
+                  });
+                }
+              });
+            });
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
+        }
+        // 多次尝试
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', removeBranding);
+        }
+        window.addEventListener('load', removeBranding);
+        removeBranding();
+        setTimeout(removeBranding, 100);
+        setTimeout(removeBranding, 300);
+        setTimeout(removeBranding, 600);
+        setTimeout(removeBranding, 1000);
+        setTimeout(removeBranding, 2000);
+      })();
+    </script>
+  </body>
+</html>
