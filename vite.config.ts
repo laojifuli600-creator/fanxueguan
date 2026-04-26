@@ -5,7 +5,6 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
   plugins: [inspectAttr(), react()],
   base: '/fanxueguan/',  // ← 加这一行
   server: {
