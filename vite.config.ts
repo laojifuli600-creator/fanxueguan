@@ -7,6 +7,7 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 export default defineConfig({
   base: './',
   plugins: [inspectAttr(), react()],
+  base: '/fanxueguan/',  // ← 加这一行
   server: {
     port: 3000,
   },
